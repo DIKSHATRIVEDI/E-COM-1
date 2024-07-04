@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .form{
+            margin-top: 20%;
+            margin-left: 40%;
+        }
+        input{
+            border: 2px solid rgb(226, 153, 101);
+        }
+        body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        }
+    .jack {
+      background-color: #6baaea;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+    }
+    .jack-logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .jackl {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    .jackl li {
+      display: inline;
+      margin-left: 20px;
+    }
+
+    .jackl li a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .jackl li a:hover {
+      text-decoration: underline;
+    }
+
+    .login-button {
+      background-color: #7bd5d4;
+      color: #ad4646;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .d-flex{
+        justify-content: center;
+        align-items: center;
+    }
+    </style>
+</head>
+<body>
+    <div class="jack">
+        <div class="jack-logo">E-Commerce</div>
+        <ul class="jackl">
+          <li><a href="/users">Home</a></li>
+          <li><a href="/users">Products</a></li>
+          <li><a href="/users/new">New</a></li>
+        </ul>
+        <button class="login-button">Login</button>
+    </div>
+    <div class="form">
+        <form action="/users" method="post">
+            <input type="text" placeholder="Name" name="name"> <br> <br>
+            <input type="text" placeholder="Photo URL" name="photo"> <br> <br>
+            <input type="number" placeholder="price" name="price"> <br> <br>
+            <input type="text" placeholder="description" name="description"> <br> <br>
+            <button>Submit</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="starability-minified/starability-all.min.css"/>
+    <style>
+    .buttons{
+      display: flex;
+    }
+    body {
+    font-family: Arial, sans-serif;
+    }
+.contains {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.stars {
+  margin-bottom: 10px;
+}
+
+.stars input {
+  display: none;
+}
+
+.stars label {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-image: url('https://freepngimg.com/download/star/22-star-png-image.png'); 
+  background-size: cover;
+  cursor: pointer;
+}
+
+.stars label::before {
+  content: "\2605"; 
+  font-size: 30px;
+  position: absolute;
+  opacity: 0;
+}
+
+.stars input:checked ~ label::before {
+  opacity: 1;
+  color: rgb(242, 147, 201); 
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  resize: vertical;
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #5c8dc2;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #6da2da;
+}
+</style>
+
+</head>
+<body>
+    <div class="card mx-3 border border-5" style="width: 24rem;">
+        <img src="<%= user.photo %>" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title"><%= user.name %></h5>
+             <h3> <%= user.price %></h3>
+             <p><%= user.description%></p>
+            <div class="buttons">
+
+                <form action="/users/<%= user._id %>" method="get">
+                    <button style="background-color: rgb(169, 239, 155); color: black;">Buy now</button>
+                </form>
+                <form action="/users/<%= user._id %>/edit" method="get">
+                    <button style="background-color: rgb(226, 238, 59); color: black;">Edit</button>
+                </form>
+                <form action="/users/<%= user._id %>?_method=DELETE" method="post">
+                    <button style="background-color: rgb(138, 105, 8); color: black;">Delete</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <div class="contains">
+        <h2>Review:</h2>
+        <div class="stars">
+          <input type="radio" name="rating" id="star5" value="5" /><label for="star5"></label>
+          <input type="radio" name="rating" id="star4" value="4" /><label for="star4"></label>
+          <input type="radio" name="rating" id="star3" value="3" /><label for="star3"></label>
+          <input type="radio" name="rating" id="star2" value="2" /><label for="star2"></label>
+          <input type="radio" name="rating" id="star1" value="1" /><label for="star1"></label>
+        </div>
+        <textarea id="reviewText" placeholder="Write your review here"></textarea>
+        <button onclick="submitReview()">Submit Review</button>
+      </div>
+      
+      <h2 style="margin: 50px auto;">.</h2>
+      <ul id="reviewList" style="margin: 50px auto;"></ul>
+
+      <script>
+        function submitReview() {
+            const stars = document.querySelector('input[name="rating"]:checked');
+            const reviewText = document.getElementById('reviewText').value;
+
+            if (stars && reviewText) {
+            const reviewList = document.getElementById('reviewList');
+            const listItem = document.createElement('li');
+
+            const ratingSpan = document.createElement('span');
+            ratingSpan.textContent = `Rating: ${stars.value} `;
+            listItem.appendChild(ratingSpan);
+
+            const reviewSpan = document.createElement('span');
+            reviewSpan.textContent = `Review: ${reviewText}`;
+            listItem.appendChild(reviewSpan);
+
+            reviewList.appendChild(listItem);    
+            document.getElementById('reviewText').value = '';
+            const allRatingInputs = document.querySelectorAll('input[name="rating"]');
+            allRatingInputs.forEach(input => (input.checked = false));
+            } else {
+                    alert('Please select a rating and write a review before submitting.');
+             }
+        }
+
+      </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

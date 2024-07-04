@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/users/<%= user._id %>?_method=PATCH" method="post">
+        <input value="<%= user.name %>" type="text" placeholder="Name" name="name"> <br> <br>
+        <input value="<%= user.photo %>" type="text" placeholder="Photo URL" name="photo"> <br> <br>
+        <input value="<%= user.price %>" type="number" placeholder="price" name="price"> <br> <br>
+        <input value="<%= user.description %>" type="text" placeholder="description" name="description"> <br> <br>
+        <button>Save</button>
+    </form>
+</body>
+</html>
